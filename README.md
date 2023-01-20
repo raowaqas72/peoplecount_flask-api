@@ -12,6 +12,11 @@ bash ./setup.sh
 pip3 install -r requirements.txt
 python3 -m flask --app detect.py run
 ```
+```sh
+docker pull raowaqas72/peoplecount:api
+docker run raowaqas72/peoplecount:api
+```
+
 
 <img src="https://github.com/raowaqas72/peoplecount_flask-api/blob/main/object_detector.jpg?raw=true" alt="Alt text" title="object detection ">
 <img src="https://github.com/raowaqas72/peoplecount_flask-api/blob/main/Screenshot%20from%202023-01-19%2016-17-31.png" alt="Alt text" title="object detection ">
