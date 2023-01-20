@@ -14,7 +14,7 @@ python3 -m flask --app detect.py run
 ```
 ```sh
 docker pull raowaqas72/peoplecount:api
-docker run raowaqas72/peoplecount:api
+docker run -p 5000:5000 raowaqas72/peoplecount:api
 ```
 
 
