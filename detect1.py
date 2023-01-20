@@ -16,7 +16,7 @@ import argparse
 import sys
 import time
 from flask import jsonify
-
+import re
 import cv2
 from tflite_support.task import core
 from tflite_support.task import processor
@@ -76,6 +76,8 @@ def run():
   image_array = cv2.imdecode(np.fromstring(image_data, np.uint8), cv2.IMREAD_COLOR)
   # apply grayscale filter
   image = cv2.cvtColor(image_array, cv2.COLOR_BGR2GRAY)
+  if image is None:
+    print("none")
   # Convert the image to a numpy array
   #image_array = np.frombuffer(image.read(), np.uint8)
   # Read the image using OpenCV
@@ -97,25 +99,25 @@ def run():
 
   # Run object detection estimation using the model.
   detection_result = detector.detect(input_tensor)
-  #print(detection_result.detections)
-  mylist=[]
+  print(detection_result.detections)
+  count=str(len(re.findall("person", str(detection_result))))
+  """mylist=[]
   count=0
   for person in detection_result.detections:
-    count=count+1
+    mylist.append(person)
     #print(count)
     #print(person.categories[0].category_name)
-    if person.categories[0].category_name=='person':
-      mylist.append(count)
-  print(len(mylist))
-  
+    #if person.categories[0].category_name=='person':
+     # mylist.append(count)
+  #print(len(mylist))"""
+  return jsonify({"peoplecount":count})
 
   #print(detection_result.detections)
-  """if detection_result.detections[0].categories[0].category_name=='person':
+  if detection_result.detections[0].categories[0].category_name=='person':
     print(detection_result)
     #print("person")
     pass
-  else:
-    continue"""
+
 
   # Draw keypoints and edges on input image
   image = utils.visualize(image, detection_result)
@@ -136,7 +138,7 @@ def run():
   #if cv2.waitKey(1) == 27:
     # break#
   cv2.imwrite('object_detector.jpg', image)
-  return jsonify({"peoplecount":len(mylist)})
+  return str(len(mylist))
 
   #cap.release()
   #cv2.destroyAllWindows()
@@ -178,8 +180,10 @@ def main():
       default=False)
   args = parser.parse_args()"""
 
-  app.run(debug=True,host='0.0.0.0')
+  #app.run(debug=True,host='0.0.0.0')
 
 
 if __name__ == '__main__':
   main()
+  app.run(debug=True)
+
