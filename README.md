@@ -16,6 +16,11 @@ python3 -m flask --app detect.py run
 docker pull raowaqas72/peoplecount:api
 docker run -p 5000:5000 raowaqas72/peoplecount:api
 ```
+we can run following docker command in order to run everytime automatically on reboot 
+```
+docker run -d -p 5000:5000 --restart unless-stopped raowaqas72/peoplecount:api
+
+```
 
 
 <img src="https://github.com/raowaqas72/peoplecount_flask-api/blob/main/object_detector.jpg?raw=true" alt="Alt text" title="object detection ">
