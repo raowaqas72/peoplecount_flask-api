@@ -18,7 +18,7 @@ docker run -p 5000:5000 raowaqas72/peoplecount:api
 ```
 we can run following docker command in order to run everytime automatically on reboot 
 ```
-docker run -d -p 5000:5000 --restart unless-stopped raowaqas72/peoplecount:api
+docker run -d -p 5000:5000 --restart unless-stopped --net host raowaqas72/peoplecount:api
 
 ```
 
