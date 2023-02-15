@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: peoplecount
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: peoplecount
+  template:
+    metadata:
+      labels:
+        app: peoplecount
+    spec:
+      hostNetwork: true
+      containers:
+      - name: peoplecount
+        image: raowaqas72/peoplecount:api
+        ports:
+        - containerPort: 5000
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 5000
