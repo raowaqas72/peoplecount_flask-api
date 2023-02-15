@@ -21,6 +21,12 @@ we can run following docker command in order to run everytime automatically on r
 docker run -d -p 5000:5000 --restart unless-stopped --net host raowaqas72/peoplecount:api
 
 ```
+we can run the kubernetes cluster using following command to run peoplecount api on kiubernetes
+
+```
+kubectl apply -f peoplecount-deployment.yml 
+
+```
 
 
 <img src="https://github.com/raowaqas72/peoplecount_flask-api/blob/main/object_detector.jpg?raw=true" alt="Alt text" title="object detection ">
